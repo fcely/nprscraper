@@ -1,0 +1,84 @@
+
+
+<div class="container">
+
+
+
+<body>
+
+<div class="row mt-4">
+
+
+
+
+<button  onclick="location.href = './my_articles' "class="ml-4 float-right newAppointment mb-3">Look My Articles</button> 
+
+
+<input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search for article">
+
+
+<table class="table table-hover tablesorter" id="myTable">
+              <thead class="thead-light">
+                <tr>
+                    
+                  <th scope="col">Article</th>
+									<th scope="col">Save</th>
+							         
+                </tr>
+              </thead>
+              <tbody class="info table-hover">
+
+  {{#each articles}}
+  	<tr class="tableRow" data-id="{{this.Title}}">
+
+			<td> {{this.Title}}  </td>
+      <td> <button onclick="location.href = './save/{{this.Title}}'" data-id="{{this.Title}}" class="save float-right ">Save</button> </td>
+    
+
+ 
+  	</tr>
+  {{/each}}
+              
+              </tbody>
+            </table>
+         
+</div>
+
+
+<div class="row">
+
+
+</div>
+
+</body>
+</div>
+
+
+<script>
+
+
+
+
+
+function filterTable() {
+ 
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
